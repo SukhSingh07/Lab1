@@ -16,16 +16,14 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - run: |
+          echo "🎉 The job was triggered by event: ${{ github.event_name }}"
+          echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ."
 
-      - name: Output event name
-        run: echo "Event: ${{ github.event_name }}"
+      - uses: actions/checkout@v3.3.0
 
-      - name: Output branch name
-        run: echo "Branch: ${{ github.ref }}"
-
-      - name: List all files
-        run: ls -al
+      - name: List files in the repository
+        run: |
+          echo "The repository ${{ github.repository }} contains the following files:"
+          tree
